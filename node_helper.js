@@ -75,6 +75,9 @@ module.exports = NodeHelper.create({
                             discoveredMacAddresses.push(macAddress);
                             var device = self.findDeviceByMacAddress(macAddress);
                             if (device) {
+                                if (cells && cells[0]) {
+                                    device.ipAddress = cells[0];
+                                }
                                 device.online = true;
                                 discoveredDevices.push(device);
                             }
