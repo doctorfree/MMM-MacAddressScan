@@ -34,7 +34,7 @@ Module.register("MMM-MacAddressScan", {
 		debug: false,
 		
 		// sjj: show table as device rows or as device columns
-		showDeviceColums: false,
+		showDeviceColumns: false,
 		coloredState: false,
 	},
 
@@ -241,9 +241,9 @@ Module.register("MMM-MacAddressScan", {
 					deviceRow.appendChild(dateCell);
 				}
 
-				// sjj: Append a new row if showDeviceColums and showInNewRow are both true
+				// sjj: Append a new row if showDeviceColumns and showInNewRow are both true
 
-				if (self.config.showDeviceColums && device.showInNewRow) {
+				if (self.config.showDeviceColumns && device.showInNewRow) {
 					// append the previously processed devices to the table
 					deviceTable.appendChild(headerRow);
 					deviceTable.appendChild(devStateRow);
@@ -258,7 +258,7 @@ Module.register("MMM-MacAddressScan", {
 				// sjj: fill also header and devState row
 				// header row
 				var headerDevCell = document.createElement("td");
-				headerDevCell.classList.add("headerDevCell");
+				headerDevCell.classList.add("headerDevCell", deviceOnline);
 				headerDevCell.innerHTML += device.name;
 
 				headerRow.appendChild(headerDevCell);
@@ -281,7 +281,7 @@ Module.register("MMM-MacAddressScan", {
 				devStateRow.appendChild(devStateCell);
 
 				// sjj: show as Device rows or as Device columns 
-				if (!self.config.showDeviceColums) {
+				if (!self.config.showDeviceColumns) {
 					deviceTable.appendChild(deviceRow);
 				}
 
@@ -291,7 +291,7 @@ Module.register("MMM-MacAddressScan", {
 		});
 		
 		// sjj: show as Device rows or as Device columns 
-		if (self.config.showDeviceColums) {
+		if (self.config.showDeviceColumns) {
 			deviceTable.appendChild(headerRow);
 			deviceTable.appendChild(devStateRow);
 		}

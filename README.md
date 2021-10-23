@@ -99,7 +99,7 @@ Add the module to the modules array in the `config/config.js` file:
 | `colored` | `false` | `optional` determines whether devices are shown in the color defined in the devices section. |
 | `coloredSymbolOnly` | `false` | `optional` shows only the devices symbol. |
 | `showLastSeenWhenOffline:` | `false` | `optional` show last seen only when offline. |
-| `showDeviceColums:` | `false` | `optional` show devices as columns. |
+| `showDeviceColumns:` | `false` | `optional` show devices as columns. |
 | `coloredState:` | `false` | `optional` determines whether devices are shown in a color defined in the devices section and controlled by the online / offline state. |
 
 
@@ -216,7 +216,7 @@ Displays the specified devices as columns:
             sort: false,
             showIP: false,
             showUnknown: false,
-            showDeviceColums: true,
+            showDeviceColumns: true,
             coloredState: true,
         }
     }
@@ -348,18 +348,22 @@ Devices as columns with newLines<br/>
   <img src=".gitlab/exampleColumnsNewLines.jpg">
 </p>
 <p float="left">
-Network/System Info<br/>(click to enlarge)<br/>
+Network/System Info Screen and MMM-MacAddressScan Module<br/>
+Online devices are highlighted with device group color<br/>
+Offline devices are dimmed with red device icon color<br/>
+(click to enlarge)<br/>
   <img src=".gitlab/network_info_1.png" width="270" height="480">
+  <img src=".gitlab/network_info_2.png" width="270" height="480">
 </p>
 The Network/System Info screenshot is from a MagicMirror configured with
 the following modules:
 
-- MMM-Remote-Control
-- MMM-Tools
-- mmm-hue-lights
-- MMM-Solar
-- internet-monitor
-- MMM-MacAddressScan
+- [MMM-Remote-Control](https://github.com/Jopyth/MMM-Remote-Control)
+- [MMM-Tools](https://github.com/bugsounet/MMM-Tools)
+- [mmm-hue-lights](https://github.com/michael5r/mmm-hue-lights)
+- [MMM-Solar](https://github.com/tkrywit/MMM-Solar)
+- [internet-monitor](https://github.com/ronny3050/internet-monitor)
+- [MMM-MacAddressScan](https://gitlab.com/doctorfree/MMM-MacAddressScan)
 
 ## Support
 
