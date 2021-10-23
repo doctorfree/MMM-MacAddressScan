@@ -260,6 +260,9 @@ Module.register("MMM-MacAddressScan", {
 				var headerDevCell = document.createElement("td");
 				headerDevCell.classList.add("headerDevCell", deviceOnline);
 				headerDevCell.innerHTML += device.name;
+				if (self.config.showIP) {
+					headerDevCell.innerHTML += "<br/>(" + device.ipAddress + ")";
+				}
 
 				headerRow.appendChild(headerDevCell);
 				
