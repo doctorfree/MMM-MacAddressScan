@@ -112,8 +112,8 @@ The device object contains information about the devices to be found on the netw
 | `ipAddress` | `optional` the IP address **or** host name of the device. | `192.168.0.1` or `gitlab.com` |
 | `name` | `optional` the friendly name for the device. If omitted, the `macAddress` or `ipAddress` will be used. | `Phone` or `Router` |
 | `icon` | `optional` the symbol to show next to the device. See [Font Awesome](http://fontawesome.io/cheatsheet/) cheatsheet. If omitted, `question` will be used. | There are a huge number of icons to choose from. Here are some examples: `globe`, `server`, `desktop`, `laptop`, `mobile`, `wifi`. |
-| `color` | `optional` the color the device should be display with. | `#ff0000`  for red |
-| `colorStateOnline` | `optional` the color the device should be display with when it is online. | `#ff0000`  for red |
+| `color` | `optional` the color the device should be display with. | `#0000ff`  for blue |
+| `colorStateOnline` | `optional` the color the device should be display with when it is online. | `#00ff00`  for green |
 | `colorStateOffline` | `optional` the color the device should be display with when it is offline. | `#ff0000`  for red |
 | `showInNewRow` | `optional` add a line break if showDeviceColumns = true. | false  for no line break |
 
