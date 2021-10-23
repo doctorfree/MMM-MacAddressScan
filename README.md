@@ -19,7 +19,7 @@ module by Ian Perrin (http://ianperrin.com).
         1. [Keep alive example](#keep-alive-example)
         1. [Notification example](#notification-example)
     1. [CSS Styling](css-styling)
-1. [Updating](#updating)
+1. [Update](#update)
 1. [Screenshots](#screenshots)
 1. [Support](#support)
 1. [License](#license)
@@ -27,7 +27,7 @@ module by Ian Perrin (http://ianperrin.com).
 ## Technical Overview
 
 The scan of the local area network is performed by the `arp-scan` tool
-which uses the the Address Resolution Protocol (ARP). ARP is a communication
+which uses the Address Resolution Protocol (ARP). ARP is a communication
 protocol used for discovering the link layer address, such as a MAC address,
 associated with a given internet layer address, typically an IPv4 address.
 This mapping is a critical function in the Internet protocol suite. ARP was
@@ -44,32 +44,31 @@ Devices cannot hide from ARP packets like they can hide from Ping.
 ## Installation
 
 In your terminal, install `arp-scan`:
-````bash
-cd ~/
+```console
 sudo apt-get install arp-scan   
-````
+```
 
 *Optionally*, update the vendor database used by `arp-scan`:
-````bash
+```console
 cd /usr/share/arp-scan
 sudo get-iab -v -u http://standards-oui.ieee.org/iab/iab.txt
 sudo get-oui -v -u http://standards-oui.ieee.org/oui/oui.txt
-````
+```
 
 Clone this repository into the MagicMirror Modules folder:
-````bash
+```console
 cd ~/MagicMirror/modules
 git clone https://gitlab.com/doctorfree/MMM-MacAddressScan.git
-````
+```
 
 Install the dependencies (`sudo`, `ping`) in the MMM-MacAddressScan module folder:
-````
+```console
 cd ~/MagicMirror/modules/MMM-MacAddressScan
 npm install
-````
+```
 
 Add the module to the modules array in the `config/config.js` file:
-````javascript
+```javascript
     {
         module: 'MMM-MacAddressScan',
         position: 'top_left', 
@@ -77,7 +76,7 @@ Add the module to the modules array in the `config/config.js` file:
             // Optional config options
         }        
     },
-````
+```
 
 ## Configuration
 
@@ -135,11 +134,11 @@ found on the network, using the name of the vendor identified from the
 arp-scan result. Run the following script, edit the device names and icons
 then copy the array into the config file:
 
-````bash
+```console
 cd ~/MagicMirror/modules/MMM-MacAddressScan/scripts
 chmod +x arps2mm.sh
 ./arps2mm.sh
-````
+```
 
 **Note:** Updating the vendor database is recommended before generating the
 device array. See the [installation instructions](#installation) for details.
@@ -149,7 +148,7 @@ device array. See the [installation instructions](#installation) for details.
 #### Simple example
 Scans the network (using the default `updateInterval`) and display the status
 of the four specified devices. Display the IP of discovered devices as well:
-````javascript
+```javascript
     {
         module: "MMM-MacAddressScan",
         position: "top_left",
@@ -165,10 +164,10 @@ of the four specified devices. Display the IP of discovered devices as well:
             showUnknown: false,
         }
      }
-````
+```
 #### Example with columns
 Displays the specified devices as columns:
-````javascript
+```javascript
     {
         module: "MMM-MacAddressScan",
         position: "top_left",
@@ -220,12 +219,12 @@ Displays the specified devices as columns:
             coloredState: true,
         }
     }
-````
+```
 #### Keep alive example
 Scan every 5 seconds and only display the specified devices whether they are
 online or offline. Devices will continue to be shown as online
 (i.e. kept alive) for 5 mins after they are last found:
-````javascript
+```javascript
     {
         module: 'MMM-MacAddressScan',
         position: 'top_left', 
@@ -244,7 +243,7 @@ online or offline. Devices will continue to be shown as online
             updateInterval: 5
         }        
     },
-````
+```
 
 #### Notification example
 As with the previous example, this scans every 5 seconds and only display
@@ -256,7 +255,7 @@ In addition, the module will send a notification (`occupiedCMD`) to turn
 the monitor on when either `Mobile` or `Laptop` (the `residents`) are found
 on the network. Another notification (`vacantCMD`) will be sent when neither
 device is online:
-````javascript
+```javascript
     {
         module: 'MMM-MacAddressScan',
         position: 'top_left', 
@@ -278,7 +277,7 @@ device is online:
 
         }        
     },
-````
+```
 **NOTE** The `REMOTE_ACTION` notifications (`MONITORON` and `MONITOROFF`) actions
 require the [MMM-Remote-Control](https://github.com/Jopyth/MMM-Remote-Control)
 module to be installed.
@@ -305,7 +304,7 @@ The default styling applied to the MMM-MacAddressScan module is as follows:
 
 Additional custom styling may be applied with entries in:
 
-```sh
+```console
 MagicMirror/css/custom.css
 ```
 
@@ -318,16 +317,16 @@ add the following to your custom.css file:
 }
 ```
 
-## Updating
+## Update
 
 To update the module to the latest version, use your terminal to go to your
 MMM-MacAddressScan module folder and type the following command:
 
-````
+```console
 cd ~/MagicMirror/modules/MMM-MacAddressScan
 git pull
 npm install
-```` 
+``` 
 
 If you haven't changed the modules, this should work without any problems. 
 Type `git status` to see your changes, if there are any, you can reset them
@@ -336,11 +335,8 @@ with `git reset --hard`. After that, git pull should be possible.
 ## Screenshots
 
 <p float="left">
-Devices as rows<br/>
+Devices as rows or columns<br/>
   <img src=".gitlab/example.png">
-</p>
-<p float="left">
-Devices as columns<br/>
   <img src=".gitlab/example-columns2.jpg">
 </p>
 <p float="left">
