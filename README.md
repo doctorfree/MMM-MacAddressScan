@@ -116,13 +116,13 @@ The device object contains information about the devices to be found on the netw
 | `colorStateOffline` | `optional` the color the device should be display with when it is offline. | `#ff0000`  for red |
 | `showInNewRow` | `optional` add a line break if showDeviceColumns = true. | false  for no line break |
 
-**Note** A device object should only contain either a `macAddress` *or*
+**Note:** A device object should only contain either a `macAddress` *or*
 an `ipAddress` **NOT** both.
 
-**Note** MAC and Static IP addresses work more consistently than DHCP
+**Note:** MAC and Static IP addresses work more consistently than DHCP
 assigned addresses or hostnames.
 
-**Note** The `coloredState` parameter overwrites the `colored` parameter if
+**Note:** The `coloredState` parameter overwrites the `colored` parameter if
 both parameters are set to true. With the parameter `coloredSymbolOnly` the
 status driven coloring can be limited to the icon. 
 
@@ -139,7 +139,7 @@ chmod +x arps2mm.sh
 ./arps2mm.sh
 ````
 
-**Note** Updating the vendor database is recommended before generating the
+**Note:** Updating the vendor database is recommended before generating the
 device array. See the [installation instructions](#installation) for details.
 
 ### Example Config
@@ -311,9 +311,18 @@ Devices as columns with newLines<br/>
   <img src=".gitlab/exampleColumnsNewLines.jpg">
 </p>
 <p float="left">
-Network Info Layout (click to enlarge)<br/>
+Network/System Info<br/>(click to enlarge)<br/>
   <img src=".gitlab/network_info_1.png" width="270" height="480">
 </p>
+The Network/System Info screenshot is from a MagicMirror configured with
+the following modules:
+
+- MMM-Remote-Control
+- MMM-Tools
+- mmm-hue-lights
+- MMM-Solar
+- internet-monitor
+- MMM-MacAddressScan
 
 ## Support
 
