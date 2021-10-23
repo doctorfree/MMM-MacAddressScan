@@ -353,7 +353,7 @@ Online devices are highlighted with device group color<br/>
 Offline devices are dimmed with red device icon color<br/>
 (click to enlarge)<br/>
   <img src=".gitlab/network_info_1.png" width="270" height="480">
-  <img src=".gitlab/network_info_2.png" width="270" height="480">
+  <img src=".gitlab/network_info_2.png" width="525" height="245">
 </p>
 The Network/System Info screenshot is from a MagicMirror configured with
 the following modules:
