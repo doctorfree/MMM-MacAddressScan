@@ -1,7 +1,7 @@
 # MMM-MacAddressScan
 A module for MagicMirror which determines the status of devices on the
 network based on their MAC address. It can also look up devices by
-IP addresses or hostnames. Static IP addresses work more consistently.
+IP addresses or hostnames.
 
 This module is an enhanced clone of the excellent MMM-NetworkScanner
 module by Ian Perrin (http://ianperrin.com).
@@ -9,7 +9,6 @@ module by Ian Perrin (http://ianperrin.com).
 ## Table of contents
 
 1. [Technical Overview](#technical-overview)
-1. [Example](#example)
 1. [Installation](#installation)
 1. [Config Options](#config-options)
     1. [Device Object](#device-object)
@@ -20,6 +19,7 @@ module by Ian Perrin (http://ianperrin.com).
     1. [Keep alive example](#keep-alive-example)
     1. [Notification example](#notification-example)
 1. [Updating](#updating)
+1. [Screenshots](#screenshots)
 1. [Support](#support)
 1. [License](#license)
 
@@ -32,16 +32,13 @@ associated with a given internet layer address, typically an IPv4 address.
 This mapping is a critical function in the Internet protocol suite. ARP was
 defined in 1982 by RFC 826, which is Internet Standard STD 37.
 
-## Example
+This module uses ARP packets to discover all active devices in a LAN even if
+protected by a firewall designed to hide the presence of the device. Whether
+you are using ethernet or WiFi, the IPv4 devices on your LAN must respond to
+ARP or they cannot communicate. Since ARP is non-routable, this type of scanner
+only works on the local LAN (local subnet or network segment).
 
-devices as rows<br/>
-![](.gitlab/example.png)
-
-devices as columns<br/>
-![](.gitlab/example-columns2.jpg)
-
-devices as columns with newLines<br/>
-![](.gitlab/exampleColumnsNewLines.jpg)
+Devices cannot hide from ARP packets like they can hide from Ping.
 
 ## Installation
 
@@ -121,6 +118,9 @@ The device object contains information about the devices to be found on the netw
 
 **Note** A device object should only contain either a `macAddress` *or*
 an `ipAddress` **NOT** both.
+
+**Note** MAC and Static IP addresses work more consistently than DHCP
+assigned addresses or hostnames.
 
 **Note** The `coloredState` parameter overwrites the `colored` parameter if
 both parameters are set to true. With the parameter `coloredSymbolOnly` the
@@ -296,6 +296,25 @@ If you haven't changed the modules, this should work without any problems.
 Type `git status` to see your changes, if there are any, you can reset them
 with `git reset --hard`. After that, git pull should be possible.
 
+## Screenshots
+
+<p float="left">
+Devices as rows<br/>
+  <img src=".gitlab/example.png">
+</p>
+<p float="left">
+Devices as columns<br/>
+  <img src=".gitlab/example-columns2.jpg">
+</p>
+<p float="left">
+Devices as columns with newLines<br/>
+  <img src=".gitlab/exampleColumnsNewLines.jpg">
+</p>
+<p float="left">
+Network Info Layout (click to enlarge)<br/>
+  <img src=".gitlab/network_info_1.png" width="270" height="480">
+</p>
+
 ## Support
 
 Issues with MMM-MacAddressScan can be reported and tracked in the Issues section
@@ -304,5 +323,7 @@ of the repository at https://gitlab.com/doctorfree/MMM-MacAddressScan/-/issues
 ## License
 
 Copyright (c) 2016 Ian Perrin
+
 Copyright (c) 2021 Ronald Joe Record
+
 MIT License

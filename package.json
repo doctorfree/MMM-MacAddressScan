@@ -1,6 +1,6 @@
 {
   "name": "MMM-MacAddressScan",
-  "version": "0.0.5",
+  "version": "1.0.1",
   "description": "A module for MagicMirror which determines the status of devices on the network based on their MAC address",
   "main": "MMM-MacAddressScan.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "Network",
     "Scanner"
   ],
-  "author": "Ian Perrin",
+  "author": "Ronald Record",
   "license": "MIT",
   "bugs": {
     "url": "https://gitlab.com/doctorfree/MMM-MacAddressScan/issues"
