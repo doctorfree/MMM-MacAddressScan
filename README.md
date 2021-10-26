@@ -339,8 +339,19 @@ to follow the [4th Party Modules Wiki Installation instructions](http://wiki.bug
 ### Telegram usage
 Once installed and configured, you can control your MMM-MacAddressScan display
 by sending messages in the Telegram app to your previously created Telegram Bot.
-The supported commands are `/showip` and `hideip`. These commands show and hide,
-respectively, the IP addresses of discovered devices.
+The supported commands are:
+
+```
+/showip
+```
+
+and
+
+```
+/hideip
+```
+
+These commands show and hide, respectively, the IP addresses of discovered devices.
 
 ## Update
 
