@@ -72,6 +72,16 @@ Module.register("MMM-MacAddressScan", {
               callback: 'command_hideOffline',
             }
         )
+        commander.add(
+            {
+              // Adds Telegram command '/updateInterval'
+              command: 'updateInterval',
+			  description: "Set interval (seconds) between device scans\nTry `/updateInterval 60`.",
+              callback: 'command_updateInterval',
+			  args_pattern : ["/([0-9]+)/"],
+              args_mapping : ["interval"]
+            }
+        )
     },
 
     // Callback for /showip Telegram command
@@ -100,6 +110,21 @@ Module.register("MMM-MacAddressScan", {
 		handler.reply("TEXT", "Hiding offline devices")
 		this.config.showOffline = false;
 		this.scanNetwork();
+    },
+
+    // Callback for /updateInterval Telegram command
+    command_updateInterval: function(command, handler) {
+        if (handler.args['interval'][0]) {
+            var update_interval = handler.args['interval'][0]
+            if (!isNaN(update_interval)) {
+                if (update_interval >= 0) {
+                  handler.reply("TEXT", "Setting update interval to "
+					  + update_interval.toString())
+		          this.config.updateInterval = update_interval;
+		          this.scanNetwork();
+				}
+			}
+		}
     },
 
 	// Subclass start method.
