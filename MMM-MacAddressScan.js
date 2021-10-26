@@ -137,8 +137,7 @@ Module.register("MMM-MacAddressScan", {
 
     // Callback for /getconfig Telegram command
     command_getconfig: function(command, handler) {
-        handler.reply("TEXT", "Retrieving current configuration settings")
-        let config_status = ""
+        let config_status = "Retrieving current configuration settings\n\n"
         if (this.config.showIP) {
             config_status = config_status + "showIP = true\n"
         } else {
