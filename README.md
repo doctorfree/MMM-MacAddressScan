@@ -380,20 +380,20 @@ reset them with `git reset --hard`. After that, `git pull` should be possible.
 
 <p float="left">
 Devices as rows or columns<br/>
-  <img src=".gitlab/example.png">
-  <img src=".gitlab/example-columns2.jpg">
+  <img src="screenshots/example.png">
+  <img src="screenshots/example-columns2.jpg">
 </p>
 <p float="left">
 Devices as columns with newLines<br/>
-  <img src=".gitlab/exampleColumnsNewLines.jpg">
+  <img src="screenshots/exampleColumnsNewLines.jpg">
 </p>
 <p float="left">
 Network/System Info Screen and MMM-MacAddressScan Module<br/>
 Online devices are highlighted with device group color<br/>
 Offline devices are dimmed with red device icon color<br/>
 (click to enlarge)<br/>
-  <img src=".gitlab/network_info_1.png" width="270" height="480">
-  <img src=".gitlab/network_info_2.png" width="525" height="245">
+  <img src="screenshots/network_info_1.png" width="270" height="480">
+  <img src="screenshots/network_info_2.png" width="525" height="245">
 </p>
 The Network/System Info screenshot is from a MagicMirror configured with
 the following config.js, custom CSS, and 3rd party modules:
