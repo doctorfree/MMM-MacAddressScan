@@ -321,8 +321,8 @@ add the following to your custom.css file:
 ```
 
 ## TelegramBot integration
-You can dynamically control whether the IP address of devices is displayed in
-MMM-MacAddressScan using the Telegram app by installing the
+You can dynamically control some MMM-MacAddressScan configuration settings
+using the Telegram app by installing the
 [MMM-TelegramBot](https://github.com/bugsounet/MMM-TelegramBot)
 module and adding MMM-TelegramBot configuration to your `config.js`.
 
@@ -341,17 +341,21 @@ Once installed and configured, you can control your MMM-MacAddressScan display
 by sending messages in the Telegram app to your previously created Telegram Bot.
 The supported commands are:
 
-```
-/showip
-```
+- /showip
+- /hideip
+- /showOffline
+- /hideOffline
+- /updateInterval &lt;seconds&gt;
 
-and
+The commands `/showip` and `/hideip` show and hide, respectively, the IP
+addresses of discovered devices.
 
-```
-/hideip
-```
+The commands `/showOffline` and `/hideOffline` show and hide, respectively,
+offline discovered devices.
 
-These commands show and hide, respectively, the IP addresses of discovered devices.
+The command `/updateInterval &lt;seconds&gt;` sets the interval betweeen device
+scans in seconds. The 'seconds' argument must be a non-negative integer and
+represents the number of seconds between device scans.
 
 ## Update
 
