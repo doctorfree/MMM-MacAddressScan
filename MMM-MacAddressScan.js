@@ -56,6 +56,22 @@ Module.register("MMM-MacAddressScan", {
               callback: 'command_hideip',
             }
         )
+        commander.add(
+            {
+              // Adds Telegram command '/showOffline'
+              command: 'showOffline',
+              description: "Show offline devices\nTry `/showOffline`.",
+              callback: 'command_showOffline',
+            }
+        )
+        commander.add(
+            {
+              // Adds Telegram command '/hideOffline'
+              command: 'hideOffline',
+              description: "hide offline devices\nTry `/hideOffline`.",
+              callback: 'command_hideOffline',
+            }
+        )
     },
 
     // Callback for /showip Telegram command
@@ -69,6 +85,20 @@ Module.register("MMM-MacAddressScan", {
     command_hideip: function(command, handler) {
 		handler.reply("TEXT", "Hiding IPs")
 		this.config.showIP = false;
+		this.scanNetwork();
+    },
+
+    // Callback for /showOffline Telegram command
+    command_showOffline: function(command, handler) {
+		handler.reply("TEXT", "Showing offline devices")
+		this.config.showOffline = true;
+		this.scanNetwork();
+    },
+
+    // Callback for /hideOffline Telegram command
+    command_hideOffline: function(command, handler) {
+		handler.reply("TEXT", "Hiding offline devices")
+		this.config.showOffline = false;
 		this.scanNetwork();
     },
 
