@@ -346,6 +346,7 @@ The supported commands are:
 - /showOffline
 - /hideOffline
 - /updateInterval &lt;seconds&gt;
+- /getconfig
 
 The commands `/showip` and `/hideip` show and hide, respectively, the IP
 addresses of discovered devices.
@@ -353,9 +354,12 @@ addresses of discovered devices.
 The commands `/showOffline` and `/hideOffline` show and hide, respectively,
 offline discovered devices.
 
-The command `/updateInterval &lt;seconds&gt;` sets the interval betweeen device
+The command `/updateInterval <seconds>` sets the interval betweeen device
 scans in seconds. The 'seconds' argument must be a non-negative integer and
 represents the number of seconds between device scans.
+
+The command `getconfig` displays the current settings for the `showIP`,
+`showOffline`, and `updateInterval` configuration parameters.
 
 ## Update
 
