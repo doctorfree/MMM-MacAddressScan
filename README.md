@@ -19,6 +19,9 @@ module by Ian Perrin (http://ianperrin.com).
         1. [Keep alive example](#keep-alive-example)
         1. [Notification example](#notification-example)
     1. [CSS Styling](css-styling)
+1. [TelegramBot integration](#telegrambot-integration)
+    1. [TelegramBot installation](#telegrambot-installation)
+    1. [Telegram usage](#telegram-usage)
 1. [Update](#update)
 1. [Screenshots](#screenshots)
 1. [Support](#support)
@@ -317,6 +320,28 @@ add the following to your custom.css file:
 }
 ```
 
+## TelegramBot integration
+You can dynamically control whether the IP address of devices is displayed in
+MMM-MacAddressScan using the Telegram app by installing the
+[MMM-TelegramBot](https://github.com/bugsounet/MMM-TelegramBot)
+module and adding MMM-TelegramBot configuration to your `config.js`.
+
+### TelegramBot installation
+Follow the instructions at the
+[4th Party Modules Wiki](http://wiki.bugsounet.fr/en/MMM-TelegramBot)
+to create a Telegram Bot, install MMM-TelegramBot, and configure your
+MagicMirror `config.js` to enable Telegram commands.
+
+**Note:** You do not need to create custom commands. The Telegram commands
+used with MMM-MacAddressScan are already created by the module. You only need
+to follow the [4th Party Modules Wiki Installation instructions](http://wiki.bugsounet.fr/en/MMM-TelegramBot/Installation).
+
+### Telegram usage
+Once installed and configured, you can control your MMM-MacAddressScan display
+by sending messages in the Telegram app to your previously created Telegram Bot.
+The supported commands are `/showip` and `hideip`. These commands show and hide,
+respectively, the IP addresses of discovered devices.
+
 ## Update
 
 To update the module to the latest version, use your terminal to go to your
@@ -328,9 +353,9 @@ git pull
 npm install
 ``` 
 
-If you haven't changed the modules, this should work without any problems. 
-Type `git status` to see your changes, if there are any, you can reset them
-with `git reset --hard`. After that, git pull should be possible.
+If you haven't changed the module then this should work without problem. 
+Type `git status` to see your changes. If there are any changes, you can
+reset them with `git reset --hard`. After that, `git pull` should be possible.
 
 ## Screenshots
 

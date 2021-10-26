@@ -38,6 +38,40 @@ Module.register("MMM-MacAddressScan", {
 		coloredState: false,
 	},
 
+    // TelegramBot integration
+    getCommands: function(commander) {
+        commander.add(
+            {
+              // Adds Telegram command '/showip'
+              command: 'showip',
+              description: "Show device IPs\nTry `/showip`.",
+              callback: 'command_showip',
+            }
+        )
+        commander.add(
+            {
+              // Adds Telegram command '/hideip'
+              command: 'hideip',
+              description: "Show device IPs\nTry `/hideip`.",
+              callback: 'command_hideip',
+            }
+        )
+    },
+
+    // Callback for /showip Telegram command
+    command_showip: function(command, handler) {
+		handler.reply("TEXT", "Showing IPs")
+		this.config.showIP = true;
+		this.scanNetwork();
+    },
+
+    // Callback for /hideip Telegram command
+    command_hideip: function(command, handler) {
+		handler.reply("TEXT", "Hiding IPs")
+		this.config.showIP = false;
+		this.scanNetwork();
+    },
+
 	// Subclass start method.
 	start: function() {
 		Log.info("Starting module: " + this.name);
