@@ -398,8 +398,8 @@ Offline devices are dimmed with red device icon color<br/>
 The Network/System Info screenshot is from a MagicMirror configured with
 the following config.js, custom CSS, and 3rd party modules:
 
-- [MagicMirror/config/config.js](https://gitlab.com/doctorfree/MirrorCommandLine/-/blob/master/config/config-networkcols.js)
-- [MagicMirror/css/custom-network-cols.css](https://gitlab.com/doctorfree/MirrorCommandLine/-/blob/master/css/custom-network-cols.css)
+- [MagicMirror/config/config.js](https://gitlab.com/doctorfree/MirrorCommand/-/blob/master/config/config-networkcols.js)
+- [MagicMirror/css/custom-network-cols.css](https://gitlab.com/doctorfree/MirrorCommand/-/blob/master/css/custom-network-cols.css)
 - [MagicMirror/modules/MMM-Remote-Control](https://github.com/Jopyth/MMM-Remote-Control)
 - [MagicMirror/modules/MMM-Tools](https://github.com/bugsounet/MMM-Tools)
 - [MagicMirror/modules/mmm-hue-lights](https://github.com/michael5r/mmm-hue-lights)
