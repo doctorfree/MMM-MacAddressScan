@@ -3,7 +3,7 @@ A module for MagicMirror which determines the status of devices on the
 network based on their MAC address. It can also look up devices by
 IP addresses or hostnames.
 
-This module is an enhanced clone of the excellent MMM-NetworkScanner
+This module is an enhanced fork of the excellent MMM-NetworkScanner
 module by Ian Perrin (http://ianperrin.com).
 
 ## Table of contents
@@ -416,6 +416,6 @@ of the repository at https://gitlab.com/doctorfree/MMM-MacAddressScan/-/issues
 
 Copyright (c) 2016 Ian Perrin
 
-Copyright (c) 2021 Ronald Joe Record
+Copyright (c) 2021-2022 Ronald Joe Record
 
 MIT License

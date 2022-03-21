@@ -3,11 +3,9 @@
  * Module: MMM-MacAddressScan
  *
  * Based on MMM-NetworkScanner by Ian Perrin http://ianperrin.com
- * Cloned, modified, and extended by Ronald Record <ronaldrecord@gmail.com>
+ * Forked, modified, and extended by Ronald Record <ronaldrecord@gmail.com>
  * MIT Licensed.
  */
-
-//var Module, Log, moment, config, Log, moment, document;
 
 Module.register("MMM-MacAddressScan", {
 
@@ -33,7 +31,7 @@ Module.register("MMM-MacAddressScan", {
 
         debug: false,
         
-        // sjj: show table as device rows or as device columns
+        // Show table as device rows or as device columns
         showDeviceColumns: false,
         coloredState: false,
     },
@@ -247,7 +245,6 @@ Module.register("MMM-MacAddressScan", {
             // Send notification if user status has changed
             if (this.config.residents.length > 0) {
                 var anyoneHome, command;
-                //                self = this;
                 anyoneHome = 0;
 
                 this.networkDevices.forEach(function(device) {
@@ -304,8 +301,8 @@ Module.register("MMM-MacAddressScan", {
         var deviceTable = document.createElement("table");
         deviceTable.classList.add("deviceTable", "small");
         
-        // sjj: Show devices in columns
-        // generate header row and device state row
+        // Show devices in columns
+        // Generate header row and device state row
         
         var headerRow = document.createElement("tr");
         headerRow.classList.add("headerRow", "dimmed");
@@ -316,20 +313,33 @@ Module.register("MMM-MacAddressScan", {
             
             if (device && (device.online || device.showOffline)) {
 
-                // device row
+                // Device row
                 var deviceRow = document.createElement("tr");
                 var deviceOnline = (device.online ? "bright" : "dimmed");
                 deviceRow.classList.add("deviceRow", deviceOnline);
 
                 // Icon
-
                 var deviceCell = document.createElement("td");
                 deviceCell.classList.add("deviceCell");
                 var icon = document.createElement("i");
                 icon.classList.add("fa", "fa-fw", "fa-" + device.icon);
 
+                // Icon color initially set to device color
                 if (self.config.colored) {
                     icon.style.cssText = "color: " + device.color;
+                }
+                
+                // If using colored state, set icon color appropriately
+                if (self.config.coloredState) {
+                    if (device.online) {
+                        if (device.hasOnline) {
+                            icon.style.cssText = "color: " + device.colorStateOnline;
+                        }
+                    } else {
+                        if (device.hasOffline) {
+                            icon.style.cssText = "color: " + device.colorStateOffline;
+                        }
+                    }
                 }
 
                 if (self.config.colored && !self.config.coloredSymbolOnly && device.lastSeen) {
@@ -355,22 +365,22 @@ Module.register("MMM-MacAddressScan", {
                     deviceRow.appendChild(dateCell);
                 }
 
-                // sjj: Append a new row if showDeviceColumns and showInNewRow are both true
+                // Append a new row if showDeviceColumns and showInNewRow are both true
 
                 if (self.config.showDeviceColumns && device.showInNewRow) {
-                    // append the previously processed devices to the table
+                    // Append the previously processed devices to the table
                     deviceTable.appendChild(headerRow);
                     deviceTable.appendChild(devStateRow);
 
-                    //generate new line contents
+                    // Generate new line contents
                     headerRow = document.createElement("tr");
                     headerRow.classList.add("headerRow", "dimmed");
                     devStateRow = document.createElement("tr");
                     devStateRow.classList.add("devStateRow", "dimmed");
                 }
 
-                // sjj: fill also header and devState row
-                // header row
+                // Fill also header and devState row
+                // Header row
                 var headerDevCell = document.createElement("td");
                 headerDevCell.classList.add("headerDevCell", deviceOnline);
                 headerDevCell.innerHTML += device.name;
@@ -380,11 +390,11 @@ Module.register("MMM-MacAddressScan", {
 
                 headerRow.appendChild(headerDevCell);
                 
-                // device state row
+                // Device state row
                 var devStateCell = document.createElement("td");
                 devStateCell.classList.add("devStateCell");
                 
-                // color online / offline
+                // Color online / offline
                 if (self.config.coloredState) {
                     if (device.online) {
                         icon.style.cssText = "color: " + device.colorStateOnline;
@@ -397,7 +407,7 @@ Module.register("MMM-MacAddressScan", {
 
                 devStateRow.appendChild(devStateCell);
 
-                // sjj: show as Device rows or as Device columns 
+                // Show as Device rows or as Device columns 
                 if (!self.config.showDeviceColumns) {
                     deviceTable.appendChild(deviceRow);
                 }
@@ -407,7 +417,7 @@ Module.register("MMM-MacAddressScan", {
             }
         });
         
-        // sjj: show as Device rows or as Device columns 
+        // Show as Device rows or as Device columns 
         if (self.config.showDeviceColumns) {
             deviceTable.appendChild(headerRow);
             deviceTable.appendChild(devStateRow);
@@ -444,16 +454,23 @@ Module.register("MMM-MacAddressScan", {
                     device.name = "Unknown";
                 }
             }
-            // sjj: coloredState
+            // Colored State
             if (!device.hasOwnProperty("colorStateOnline")) {
                 device.colorStateOnline = "#ffffff";
+                device.hasOnline = false
+            } else {
+                device.hasOnline = true
             }
             if (!device.hasOwnProperty("colorStateOffline")) {
                 device.colorStateOffline = "#ffffff";
+                device.hasOffline = false
+            } else {
+                device.hasOffline = true
             }
-            // sjj show device in a new rox id mode is show in rows
+            // Show device in a new row if showInNewRow property is true
+            // Default if not set is false
             if (!device.hasOwnProperty("showInNewRow")) {
-                device.showInNewRow = false;
+                device.showInNewRow = false
             }
         });
     },
