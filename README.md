@@ -311,10 +311,19 @@ Additional custom styling may be applied with entries in:
 MagicMirror/css/custom.css
 ```
 
-For example, to increase the font size of devices text labels,
-add the following to your custom.css file:
+For example, to increase the font size of devices text labels
+and module header, add the following to your custom.css file:
 
 ```css
+.MMM-MacAddressScan .module-header {
+  font-size: 28px;
+  color: #B5F5F2;
+}
+
+.MMM-MacAddressScan .deviceCell {
+  font-size: 28px;
+}
+
 .MMM-MacAddressScan .headerDevCell {
   font-size: 28px;
 }

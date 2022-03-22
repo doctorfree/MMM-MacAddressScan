@@ -4,7 +4,7 @@
  * Node Helper: MMM-MacAddressScan
  *
  * Based on MMM-NetworkScanner by Ian Perrin http://ianperrin.com
- * Cloned, modified, and extended by Ronald Record <ronaldrecord@gmail.com>
+ * Forked, modified, and extended by Ronald Record <ronaldrecord@gmail.com>
  * MIT Licensed.
  */
 
