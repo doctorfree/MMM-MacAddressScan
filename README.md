@@ -290,16 +290,16 @@ module to be installed.
 The default styling applied to the MMM-MacAddressScan module is as follows:
 
 ```css
-.MMM-MacAddressScan .device {
+.MMM-MacAddressScan .deviceCell {
   text-align: left;
 }
 
-.MMM-MacAddressScan .device i {
+.MMM-MacAddressScan .deviceCell i {
   padding-left: 0;
   padding-right: 10px;
 }
 
-.MMM-MacAddressScan .date {
+.MMM-MacAddressScan .dateCell {
   padding-left: 30px;
   text-align: right;
 }
