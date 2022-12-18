@@ -17,6 +17,7 @@ Module.register("MMM-MacAddressScan", {
         showUnknown: true, // shows devices found on the network even if not specified in the 'devices' option 
         showOffline: true, // shows devices specified in the 'devices' option even when offline
         showLastSeen: false, // shows when the device was last seen e.g. "Device Name - last seen 5 minutes ago"
+        saveLastSeen: false, // saves when the device was last seen across restarts
         keepAlive: 180, // how long (in seconds) a device should be considered 'alive' since it was last found on the network
         updateInterval: 20, // how often (in seconds) the module should scan the network
         sort: true, // sort the devices in the mirror
@@ -156,10 +157,22 @@ Module.register("MMM-MacAddressScan", {
         Log.info("Starting module: " + this.name)
         if (this.config.debug) Log.info(this.name + " config: ", this.config)
 
+        const Store = require('./store.js');
+        // Instantiate the store class
+        const store = new Store({
+          // We'll call our data file 'last-seen'
+          configName: 'last-seen',
+          // TODO: An empty array of devices? 
+          defaults: {
+          }
+        });
+
         // variable for if anyone is home
         this.occupied = true
 
         moment.locale(config.language)
+
+        if (self.config.saveLastSeen) this.restoreDeviceLastSeen()
 
         this.validateDevices()
 
@@ -431,6 +444,11 @@ Module.register("MMM-MacAddressScan", {
         }
 
         return wrapper;
+    },
+
+    restoreDeviceLastSeen: function() {
+        this.config.devices.forEach(function(device) {
+        });
     },
 
     validateDevices: function() {

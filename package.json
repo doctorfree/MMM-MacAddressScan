@@ -1,6 +1,6 @@
 {
   "name": "MMM-MacAddressScan",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A module for MagicMirror which determines the status of devices on the network based on their MAC address",
   "main": "MMM-MacAddressScan.js",
   "scripts": {
@@ -23,7 +23,10 @@
   "homepage": "https://gitlab.com/doctorfree/MMM-MacAddressScan#readme",
   "dependencies": {
     "sudo": "^1.0.3",
-    "ping": "^0.1.10"
+    "ping": "^0.1.10",
+    "electron-store": "latest",
+    "fs": "latest",
+    "path": "latest"
   },
   "devDependencies": {
       "grunt": "latest",
