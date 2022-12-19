@@ -17,17 +17,11 @@ module.exports = NodeHelper.create({
     
     start: function() {
         this.log("Starting module: " + this.name)
-        if (this.config.debug) this.log(this.name + " config: ", this.config)
-
-        // Instantiate the store class
-        const store = new Store();
 
         // variable for if anyone is home
         this.occupied = true
 
         moment.locale(config.language)
-
-        if (this.config.saveLastSeen) this.restoreDeviceLastSeen()
 
         this.validateDevices()
 
@@ -42,12 +36,20 @@ module.exports = NodeHelper.create({
         if (this.config.saveLastSeen) this.saveDeviceLastSeen()
     },
 
+    startStore: function() {
+        // Instantiate the store class
+        const store = new Store();
+
+        if (this.config.saveLastSeen) this.restoreDeviceLastSeen()
+    },
+
     // Override socketNotificationReceived method.
     socketNotificationReceived: function(notification, payload) {
         this.log(this.name + " received " + notification);
 
         if (notification === "CONFIG") {
             this.config = payload;
+            this.startStore()
             return true;
         }
 
