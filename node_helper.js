@@ -12,6 +12,7 @@ const NodeHelper = require("node_helper");
 const ping = require("ping");
 const sudo = require("sudo");
 const Store = require('electron-store');
+const store = new Store();
 
 module.exports = NodeHelper.create({
     
@@ -19,17 +20,8 @@ module.exports = NodeHelper.create({
         this.log("Starting module: " + this.name);
     },
 
-    // Subclass stop method
-    stop: function() {
-        this.log("Stopping module: " + this.name)
-        if (this.config.saveLastSeen) this.saveDeviceLastSeen()
-    },
-
-    startStore: function() {
-        // Instantiate the store class
-        const store = new Store();
-
-        if (this.config.saveLastSeen) this.restoreDeviceLastSeen()
+    stop: function function_name () {
+        this.log("Stopping module: " + this.name);
     },
 
     // Override socketNotificationReceived method.
@@ -38,7 +30,6 @@ module.exports = NodeHelper.create({
 
         if (notification === "CONFIG") {
             this.config = payload;
-            this.startStore()
             return true;
         }
 

@@ -167,6 +167,14 @@ Module.register("MMM-MacAddressScan", {
         this.sendSocketNotification('CONFIG', this.config)
 
         this.scanNetwork()
+
+        if (this.config.saveLastSeen) this.restoreDeviceLastSeen()
+    },
+
+    // Subclass stop method
+    stop: function() {
+        Log.info("Stopping module: " + this.name)
+        if (this.config.saveLastSeen) this.saveDeviceLastSeen()
     },
 
     // Subclass getStyles method
