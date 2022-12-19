@@ -9,19 +9,86 @@
  */
 
 const NodeHelper = require("node_helper");
+const moment = require("moment");
 const ping = require("ping");
 const sudo = require("sudo");
 const Store = require('electron-store');
-const store = new Store();
 
 module.exports = NodeHelper.create({
     
-    start: function function_name () {
-        this.log("Starting module: " + this.name);
+    // Subclass start method.
+    start: function() {
+        this.log("Starting module: " + this.name)
+
+        var cfgrd = await this.sendSocketNotification('CONFIG', this.config)
+
+        const store = new Store();
+        this.log("Last seen storage path: " + store.path)
+
+        // variable for if anyone is home
+        this.occupied = true
+
+        moment.locale(config.language)
+
+        this.validateDevices()
+
+        if (this.config.saveLastSeen) {
+            this.log("Calling restoreDeviceLastSeen")
+            this.restoreDeviceLastSeen()
+        }
+
+        this.scanNetwork()
     },
 
-    stop: function function_name () {
-        this.log("Stopping module: " + this.name);
+    // Subclass stop method
+    stop: function() {
+        this.log("Stopping module: " + this.name)
+        if (this.config.saveLastSeen) {
+            this.log("Calling saveDeviceLastSeen")
+            this.saveDeviceLastSeen()
+        }
+    },
+
+    // Sample electron-store usage
+    //
+    // const Store = require('electron-store');
+    // const store = new Store();
+    //
+    // store.set('unicorn', '\U0001f984');
+    // console.log(store.get('unicorn'));
+    // => '\U0001f984'
+    //
+    // Use dot-notation to access nested properties
+    // store.set('foo.bar', true);
+    // console.log(store.get('foo'));
+    // => {bar: true}
+    //
+    // store.delete('unicorn');
+    // console.log(store.get('unicorn'));
+    // => undefined
+
+    restoreDeviceLastSeen: function() {
+//      if (this.config.debug) this.log(this.name + " is restoring saved device seen");
+        this.log(this.name + " is restoring saved device seen");
+//      this.config.devices.forEach(function(device) {
+//      });
+    },
+
+    saveDeviceLastSeen: function() {
+//      if (this.config.debug) this.log(this.name + " is saving device seen");
+        this.log(this.name + " is saving device seen to " + store.path);
+        this.config.devices.forEach(function(device) {
+            if (typeof device.lastSeen !== 'undefined') {
+                this.log(device.name + ": setting lastseen to " + device.lastSeen);
+                if (device.hasOwnProperty("macAddress")) {
+                    store.set(device.macAddress + '.lastseen', device.lastSeen);
+                } else if (device.hasOwnProperty("ipAddress")) {
+                    store.set(device.ipAddress + '.lastseen', device.lastSeen);
+                }
+            } else {
+                this.log(device.name + ": undefined lastSeen property");
+            }
+        });
     },
 
     // Override socketNotificationReceived method.
