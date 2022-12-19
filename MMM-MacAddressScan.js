@@ -152,40 +152,6 @@ Module.register("MMM-MacAddressScan", {
         handler.reply("TEXT", config_status)
     },
 
-    // Subclass start method
-    start: function() {
-        Log.info("Starting module: " + this.name)
-        if (this.config.debug) Log.info(this.name + " config: ", this.config)
-
-        // Instantiate the store class
-        const store = new Store({
-          // We'll call our data file 'last-seen'
-          configName: 'last-seen',
-          // TODO: An empty array of devices? 
-          defaults: {
-          }
-        });
-
-        // variable for if anyone is home
-        this.occupied = true
-
-        moment.locale(config.language)
-
-        if (self.config.saveLastSeen) this.restoreDeviceLastSeen()
-
-        this.validateDevices()
-
-        this.sendSocketNotification('CONFIG', this.config)
-
-        this.scanNetwork()
-    },
-
-    // Subclass stop method
-    stop: function() {
-        Log.info("Stopping module: " + this.name)
-        if (self.config.saveLastSeen) this.saveDeviceLastSeen()
-    },
-
     // Subclass getStyles method
     getStyles: function() {
         return ['MMM-MacAddressScan.css', 'font-awesome.css']

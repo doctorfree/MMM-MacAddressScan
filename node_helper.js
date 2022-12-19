@@ -11,16 +11,35 @@
 const NodeHelper = require("node_helper");
 const ping = require("ping");
 const sudo = require("sudo");
-const Store = require('./store.js');
+const Store = require('electron-store');
 
 module.exports = NodeHelper.create({
     
-    start: function function_name () {
-        this.log("Starting module: " + this.name);
+    start: function() {
+        Log.info("Starting module: " + this.name)
+        if (this.config.debug) Log.info(this.name + " config: ", this.config)
+
+        // Instantiate the store class
+        const store = new Store();
+
+        // variable for if anyone is home
+        this.occupied = true
+
+        moment.locale(config.language)
+
+        if (self.config.saveLastSeen) this.restoreDeviceLastSeen()
+
+        this.validateDevices()
+
+        this.sendSocketNotification('CONFIG', this.config)
+
+        this.scanNetwork()
     },
-    
-    stop: function function_name () {
-        this.log("Stoping module: " + this.name);
+
+    // Subclass stop method
+    stop: function() {
+        Log.info("Stopping module: " + this.name)
+        if (self.config.saveLastSeen) this.saveDeviceLastSeen()
     },
 
     // Override socketNotificationReceived method.
