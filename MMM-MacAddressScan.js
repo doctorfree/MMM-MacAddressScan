@@ -152,6 +152,23 @@ Module.register("MMM-MacAddressScan", {
         handler.reply("TEXT", config_status)
     },
 
+    // Subclass start method.
+    start: function() {
+        Log.info("Starting module: " + this.name)
+        if (this.config.debug) Log.info(this.name + " config: ", this.config)
+
+        // variable for if anyone is home
+        this.occupied = true
+
+        moment.locale(config.language)
+
+        this.validateDevices()
+
+        this.sendSocketNotification('CONFIG', this.config)
+
+        this.scanNetwork()
+    },
+
     // Subclass getStyles method
     getStyles: function() {
         return ['MMM-MacAddressScan.css', 'font-awesome.css']

@@ -15,19 +15,8 @@ const Store = require('electron-store');
 
 module.exports = NodeHelper.create({
     
-    start: function() {
-        this.log("Starting module: " + this.name)
-
-        // variable for if anyone is home
-        this.occupied = true
-
-        moment.locale(config.language)
-
-        this.validateDevices()
-
-        this.sendSocketNotification('CONFIG', this.config)
-
-        this.scanNetwork()
+    start: function function_name () {
+        this.log("Starting module: " + this.name);
     },
 
     // Subclass stop method
