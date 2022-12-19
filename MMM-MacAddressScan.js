@@ -169,7 +169,7 @@ Module.register("MMM-MacAddressScan", {
         this.scanNetwork()
 
         if (this.config.saveLastSeen) {
-            Log.info("Calling restoreDeviceLastSeen)
+            Log.info("Calling restoreDeviceLastSeen")
             this.restoreDeviceLastSeen()
         }
     },
