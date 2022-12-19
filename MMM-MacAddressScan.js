@@ -168,13 +168,19 @@ Module.register("MMM-MacAddressScan", {
 
         this.scanNetwork()
 
-        if (this.config.saveLastSeen) this.restoreDeviceLastSeen()
+        if (this.config.saveLastSeen) {
+            Log.info("Calling restoreDeviceLastSeen)
+            this.restoreDeviceLastSeen()
+        }
     },
 
     // Subclass stop method
     stop: function() {
         Log.info("Stopping module: " + this.name)
-        if (this.config.saveLastSeen) this.saveDeviceLastSeen()
+        if (this.config.saveLastSeen) {
+            Log.info("Calling saveDeviceLastSeen)
+            this.saveDeviceLastSeen()
+        }
     },
 
     // Subclass getStyles method
@@ -461,20 +467,25 @@ Module.register("MMM-MacAddressScan", {
     // => undefined
 
     restoreDeviceLastSeen: function() {
-        if (this.config.debug) Log.info(this.name + " is restoring saved device seen");
+//      if (this.config.debug) Log.info(this.name + " is restoring saved device seen");
+        Log.info(this.name + " is restoring saved device seen");
 //      this.config.devices.forEach(function(device) {
 //      });
     },
 
     saveDeviceLastSeen: function() {
-        if (this.config.debug) Log.info(this.name + " is saving device seen");
+//      if (this.config.debug) Log.info(this.name + " is saving device seen");
+        Log.info(this.name + " is saving device seen");
         this.config.devices.forEach(function(device) {
             if (typeof device.lastSeen !== 'undefined') {
+                Log.info(device.name + ": setting lastseen to " + device.lastSeen);
                 if (device.hasOwnProperty("macAddress")) {
                     store.set(device.macAddress + '.lastseen', device.lastSeen);
                 } else if (device.hasOwnProperty("ipAddress")) {
                     store.set(device.ipAddress + '.lastseen', device.lastSeen);
                 }
+            } else {
+                Log.info(device.name + ": undefined lastSeen property");
             }
         });
     },
