@@ -16,8 +16,8 @@ const Store = require('electron-store');
 module.exports = NodeHelper.create({
     
     start: function() {
-        Log.info("Starting module: " + this.name)
-        if (this.config.debug) Log.info(this.name + " config: ", this.config)
+        this.log("Starting module: " + this.name)
+        if (this.config.debug) this.log(this.name + " config: ", this.config)
 
         // Instantiate the store class
         const store = new Store();
@@ -38,7 +38,7 @@ module.exports = NodeHelper.create({
 
     // Subclass stop method
     stop: function() {
-        Log.info("Stopping module: " + this.name)
+        this.log("Stopping module: " + this.name)
         if (self.config.saveLastSeen) this.saveDeviceLastSeen()
     },
 
