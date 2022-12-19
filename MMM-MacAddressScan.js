@@ -157,7 +157,6 @@ Module.register("MMM-MacAddressScan", {
         Log.info("Starting module: " + this.name)
         if (this.config.debug) Log.info(this.name + " config: ", this.config)
 
-        const Store = require('./store.js');
         // Instantiate the store class
         const store = new Store({
           // We'll call our data file 'last-seen'

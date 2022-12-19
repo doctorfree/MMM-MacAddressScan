@@ -11,11 +11,16 @@
 const NodeHelper = require("node_helper");
 const ping = require("ping");
 const sudo = require("sudo");
+const Store = require('./store.js');
 
 module.exports = NodeHelper.create({
     
     start: function function_name () {
         this.log("Starting module: " + this.name);
+    },
+    
+    stop: function function_name () {
+        this.log("Stoping module: " + this.name);
     },
 
     // Override socketNotificationReceived method.
