@@ -152,7 +152,7 @@ Module.register("MMM-MacAddressScan", {
         handler.reply("TEXT", config_status)
     },
 
-    // Subclass start method.
+    // Subclass start method
     start: function() {
         Log.info("Starting module: " + this.name)
         if (this.config.debug) Log.info(this.name + " config: ", this.config)
@@ -181,7 +181,13 @@ Module.register("MMM-MacAddressScan", {
         this.scanNetwork()
     },
 
-    // Subclass getStyles method.
+    // Subclass stop method
+    stop: function() {
+        Log.info("Stopping module: " + this.name)
+        if (self.config.saveLastSeen) this.saveDeviceLastSeen()
+    },
+
+    // Subclass getStyles method
     getStyles: function() {
         return ['MMM-MacAddressScan.css', 'font-awesome.css']
     },
@@ -446,8 +452,40 @@ Module.register("MMM-MacAddressScan", {
         return wrapper;
     },
 
+    // Sample electron-store usage
+    //
+    // const Store = require('electron-store');
+    // const store = new Store();
+    //
+    // store.set('unicorn', '\U0001f984');
+    // console.log(store.get('unicorn'));
+    // => '\U0001f984'
+    //
+    // Use dot-notation to access nested properties
+    // store.set('foo.bar', true);
+    // console.log(store.get('foo'));
+    // => {bar: true}
+    //
+    // store.delete('unicorn');
+    // console.log(store.get('unicorn'));
+    // => undefined
+
     restoreDeviceLastSeen: function() {
+        if (this.config.debug) Log.info(this.name + " is restoring saved device seen");
+//      this.config.devices.forEach(function(device) {
+//      });
+    },
+
+    saveDeviceLastSeen: function() {
+        if (this.config.debug) Log.info(this.name + " is saving device seen");
         this.config.devices.forEach(function(device) {
+            if (typeof device.lastSeen !== 'undefined') {
+                if (device.hasOwnProperty("macAddress")) {
+                    store.set(device.macAddress + '.lastseen', device.lastSeen);
+                } else if (device.hasOwnProperty("ipAddress")) {
+                    store.set(device.ipAddress + '.lastseen', device.lastSeen);
+                }
+            }
         });
     },
 
