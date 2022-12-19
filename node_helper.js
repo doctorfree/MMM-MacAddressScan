@@ -27,7 +27,7 @@ module.exports = NodeHelper.create({
 
         moment.locale(config.language)
 
-        if (self.config.saveLastSeen) this.restoreDeviceLastSeen()
+        if (this.config.saveLastSeen) this.restoreDeviceLastSeen()
 
         this.validateDevices()
 
@@ -39,7 +39,7 @@ module.exports = NodeHelper.create({
     // Subclass stop method
     stop: function() {
         this.log("Stopping module: " + this.name)
-        if (self.config.saveLastSeen) this.saveDeviceLastSeen()
+        if (this.config.saveLastSeen) this.saveDeviceLastSeen()
     },
 
     // Override socketNotificationReceived method.
