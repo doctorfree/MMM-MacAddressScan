@@ -178,7 +178,7 @@ Module.register("MMM-MacAddressScan", {
     stop: function() {
         Log.info("Stopping module: " + this.name)
         if (this.config.saveLastSeen) {
-            Log.info("Calling saveDeviceLastSeen)
+            Log.info("Calling saveDeviceLastSeen")
             this.saveDeviceLastSeen()
         }
     },
