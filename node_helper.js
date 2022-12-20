@@ -22,10 +22,7 @@ module.exports = NodeHelper.create({
         this.log("Starting module: " + this.name)
         this.log("Last seen storage path: " + store.path)
 
-        var initialized = await this.sendSocketNotification('INIT')
-        var configured = await this.sendSocketNotification('CONFIG', this.config)
-        var scaninit = await this.sendSocketNotification('INIT_SCAN')
-        var seenstart = await this.sendSocketNotification('LAST_SEEN_START')
+        this.sendSocketNotification('INIT')
     },
 
     // Subclass stop method
@@ -41,6 +38,7 @@ module.exports = NodeHelper.create({
 
         if (notification === "CONFIG") {
             this.config = payload;
+            this.sendSocketNotification('INIT_SCAN')
             return true;
         }
 
