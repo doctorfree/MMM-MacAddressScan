@@ -59,7 +59,7 @@ Module.register("MMM-MacAddressScan", {
             Log.info("Calling saveDeviceLastSeen")
             this.saveDeviceLastSeen()
         }
-    }
+    },
 
     // Sample electron-store usage
     //
