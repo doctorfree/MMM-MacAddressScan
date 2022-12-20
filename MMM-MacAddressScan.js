@@ -37,6 +37,48 @@ Module.register("MMM-MacAddressScan", {
         coloredState: false,
     },
 
+    // Sample electron-store usage
+    //
+    // const Store = require('electron-store');
+    // const store = new Store();
+    //
+    // store.set('unicorn', '\U0001f984');
+    // console.log(store.get('unicorn'));
+    // => '\U0001f984'
+    //
+    // Use dot-notation to access nested properties
+    // store.set('foo.bar', true);
+    // console.log(store.get('foo'));
+    // => {bar: true}
+    //
+    // store.delete('unicorn');
+    // console.log(store.get('unicorn'));
+    // => undefined
+
+    restoreDeviceLastSeen: function() {
+//      if (this.config.debug) Log.info(this.name + " is restoring saved device seen");
+        Log.info(this.name + " is restoring saved device seen");
+//      this.config.devices.forEach(function(device) {
+//      });
+    },
+
+    saveDeviceLastSeen: function() {
+//      if (this.config.debug) Log.info(this.name + " is saving device seen");
+        Log.info(this.name + " is saving device seen to " + store.path);
+        this.config.devices.forEach(function(device) {
+            if (typeof device.lastSeen !== 'undefined') {
+                Log.info(device.name + ": setting lastseen to " + device.lastSeen);
+                if (device.hasOwnProperty("macAddress")) {
+                    store.set(device.macAddress + '.lastseen', device.lastSeen);
+                } else if (device.hasOwnProperty("ipAddress")) {
+                    store.set(device.ipAddress + '.lastseen', device.lastSeen);
+                }
+            } else {
+                Log.info(device.name + ": undefined lastSeen property");
+            }
+        });
+    },
+
     // TelegramBot integration
     getCommands: function(commander) {
         commander.add(
@@ -264,6 +306,28 @@ Module.register("MMM-MacAddressScan", {
             this.updateDom();
             return;
 
+        }
+
+        if (notification === 'INIT') {
+            // variable for if anyone is home
+            this.occupied = true
+            moment.locale(config.language)
+            this.validateDevices()
+            this.scanNetwork()
+        }
+
+        if (notification === 'LAST_SEEN_START') {
+            if (this.config.saveLastSeen) {
+                Log.info("Calling restoreDeviceLastSeen")
+                this.restoreDeviceLastSeen()
+            }
+        }
+
+        if (notification === 'LAST_SEEN_STOP') {
+            if (this.config.saveLastSeen) {
+                Log.info("Calling saveDeviceLastSeen")
+                this.saveDeviceLastSeen()
+            }
         }
 
     },
