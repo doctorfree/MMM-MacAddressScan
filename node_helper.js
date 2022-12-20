@@ -22,8 +22,9 @@ module.exports = NodeHelper.create({
         this.log("Starting module: " + this.name)
         this.log("Last seen storage path: " + store.path)
 
-        this.sendSocketNotification('CONFIG', this.config)
         this.sendSocketNotification('INIT')
+        this.sendSocketNotification('CONFIG', this.config)
+        this.sendSocketNotification('INIT_SCAN')
         this.sendSocketNotification('LAST_SEEN_START')
     },
 

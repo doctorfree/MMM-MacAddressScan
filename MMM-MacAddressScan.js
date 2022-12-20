@@ -313,6 +313,9 @@ Module.register("MMM-MacAddressScan", {
             this.occupied = true
             moment.locale(config.language)
             this.validateDevices()
+        }
+
+        if (notification === 'INIT_SCAN') {
             this.scanNetwork()
         }
 
