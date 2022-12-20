@@ -205,7 +205,8 @@ Module.register("MMM-MacAddressScan", {
     },
 
     // Subclass socketNotificationReceived method.
-    socketNotificationReceived: function(notification, payload) {
+    socketNotificationReceived: async function(notification, payload) {
+
         if (this.config.debug) Log.info(this.name + " received a notification: " + notification, payload)
 
         var self = this

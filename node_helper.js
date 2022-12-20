@@ -22,20 +22,21 @@ module.exports = NodeHelper.create({
         this.log("Starting module: " + this.name)
         this.log("Last seen storage path: " + store.path)
 
-        this.sendSocketNotification('INIT')
-        this.sendSocketNotification('CONFIG', this.config)
-        this.sendSocketNotification('INIT_SCAN')
-        this.sendSocketNotification('LAST_SEEN_START')
+        var initialized = await this.sendSocketNotification('INIT')
+        var configured = await this.sendSocketNotification('CONFIG', this.config)
+        var scaninit = await this.sendSocketNotification('INIT_SCAN')
+        var seenstart = await this.sendSocketNotification('LAST_SEEN_START')
     },
 
     // Subclass stop method
     stop: function() {
         this.log("Stopping module: " + this.name)
-        this.sendSocketNotification('LAST_SEEN_STOP')
+        var seenstop = await this.sendSocketNotification('LAST_SEEN_STOP')
     },
 
     // Override socketNotificationReceived method.
-    socketNotificationReceived: function(notification, payload) {
+
+    socketNotificationReceived: async function (notification, payload) {
         this.log(this.name + " received " + notification);
 
         if (notification === "CONFIG") {
@@ -48,7 +49,6 @@ module.exports = NodeHelper.create({
             this.scanNetworkIP();
             return true;
         }
-
     },
 
     scanNetworkMAC: function() {
