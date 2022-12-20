@@ -28,12 +28,12 @@ module.exports = NodeHelper.create({
     // Subclass stop method
     stop: function() {
         this.log("Stopping module: " + this.name)
-        var seenstop = await this.sendSocketNotification('LAST_SEEN_STOP')
+        this.sendSocketNotification('LAST_SEEN_STOP')
     },
 
     // Override socketNotificationReceived method.
 
-    socketNotificationReceived: async function (notification, payload) {
+    socketNotificationReceived: function (notification, payload) {
         this.log(this.name + " received " + notification);
 
         if (notification === "CONFIG") {
