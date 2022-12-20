@@ -37,6 +37,30 @@ Module.register("MMM-MacAddressScan", {
         coloredState: false,
     },
 
+    start: function() {
+        Log.info("In module register starting module: " + this.name)
+        if (this.config.debug) Log.info(this.name + " config: ", this.config)
+
+        // variable for if anyone is home
+        this.occupied = true
+
+        moment.locale(config.language)
+
+        this.validateDevices()
+
+        this.sendSocketNotification('CONFIG', this.config)
+
+//      this.scanNetwork()
+    },
+
+    stop: function() {
+        Log.info("In module register stopping module: " + this.name)
+        if (this.config.saveLastSeen) {
+            Log.info("Calling saveDeviceLastSeen")
+            this.saveDeviceLastSeen()
+        }
+    }
+
     // Sample electron-store usage
     //
     // const Store = require('electron-store');
@@ -309,14 +333,6 @@ Module.register("MMM-MacAddressScan", {
 
         }
 
-        if (notification === 'INIT') {
-            // variable for if anyone is home
-            this.occupied = true
-            moment.locale(config.language)
-            this.validateDevices()
-            this.sendSocketNotification('CONFIG', this.config)
-        }
-
         if (notification === 'INIT_SCAN') {
             this.scanNetwork()
             this.sendSocketNotification('LAST_SEEN_START')
@@ -328,14 +344,6 @@ Module.register("MMM-MacAddressScan", {
                 this.restoreDeviceLastSeen()
             }
         }
-
-        if (notification === 'LAST_SEEN_STOP') {
-            if (this.config.saveLastSeen) {
-                Log.info("Calling saveDeviceLastSeen")
-                this.saveDeviceLastSeen()
-            }
-        }
-
     },
 
     // Override dom generator.

@@ -17,18 +17,12 @@ const store = new Store();
 
 module.exports = NodeHelper.create({
     
-    // Subclass start method.
     start: function() {
-        this.log("Starting module: " + this.name)
-        this.log("Last seen storage path: " + store.path)
-
-        this.sendSocketNotification('INIT')
+        this.log("Node helper starting module: " + this.name)
     },
 
-    // Subclass stop method
     stop: function() {
-        this.log("Stopping module: " + this.name)
-        this.sendSocketNotification('LAST_SEEN_STOP')
+        this.log("Node helper stopping module: " + this.name)
     },
 
     // Override socketNotificationReceived method.
