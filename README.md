@@ -87,7 +87,7 @@ Add the module to the modules array in the `config/config.js` file:
 | --- | --- | --- |
 | `devices` | [] | an array of devices to be found on the network. See [Device object](#device-object) |
 | `network` | `-l` | `optional` a network mask to limit the scope of the network scan, i.e. `192.168.0.0/24`. If omitted, or set to `-l`, the entire network will be scanned. |
-| `interface` | `` | `optional` the network interface on which to broadcast, useful if arp-scan is not finding devices, must be of the form `-I wlan0` or `-I eth1`. leave empty for default |
+| `interface` | `` | `optional` the network interface on which to broadcast, useful if arp-scan is not finding devices, for example `wlan0` or `eth1`. leave empty for default |
 | `showIP` | true | `optional` shows the IP address of devices found on the network |
 | `showUnknown` | true | `optional` shows devices found on the network even if not specified in the `devices` option |
 | `showOffline` | true | `optional` shows devices specified in the `devices` option even when offline |

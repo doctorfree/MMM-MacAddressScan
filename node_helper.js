@@ -42,7 +42,11 @@ module.exports = NodeHelper.create({
         // Target hosts/network supplied in config or entire localnet
         var arpHosts = this.config.network || '-l';
         var arpInterface = this.config.interface || '';
-        var arp = sudo(['arp-scan', '-q', arpHosts, arpInterface]);
+        var ifaceOpt = '';
+        if (arpInterface !== '') {
+            ifaceOpt = '-I';
+        }
+        var arp = sudo(['arp-scan', '-q', arpHosts, ifaceOpt, arpInterface]);
         var buffer = '';
         var errstream = '';
         var discoveredMacAddresses = [];

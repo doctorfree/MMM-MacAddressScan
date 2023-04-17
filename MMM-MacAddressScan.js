@@ -13,7 +13,7 @@ Module.register("MMM-MacAddressScan", {
     defaults: {
         devices: [], // an array of device objects e.g. { macAddress: "aa:bb:cc:11:22:33", name: "DEVICE-NAME", icon: "FONT-AWESOME-ICON"}
         network: "-l", // a Local Network IP mask to limit the mac address scan, i.e. `192.168.0.0/24`. Use `-l` for the entire localnet
-        interface: "", // the network interface on which to broadcast, useful if arp-scan is not finding devices, must be of the form "-I wlan0" or "-I eth1". leave empty for default
+        interface: "", // the network interface on which to broadcast, useful if arp-scan is not finding devices, for example "wlan0" or "eth1". leave empty for default
         showIP: true, // show IP of devices
         showUnknown: true, // shows devices found on the network even if not specified in the 'devices' option 
         showOffline: true, // shows devices specified in the 'devices' option even when offline
