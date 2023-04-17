@@ -87,6 +87,7 @@ Add the module to the modules array in the `config/config.js` file:
 | --- | --- | --- |
 | `devices` | [] | an array of devices to be found on the network. See [Device object](#device-object) |
 | `network` | `-l` | `optional` a network mask to limit the scope of the network scan, i.e. `192.168.0.0/24`. If omitted, or set to `-l`, the entire network will be scanned. |
+| `interface` | `` | `optional` the network interface on which to broadcast, useful if arp-scan is not finding devices, must be of the form `-I wlan0` or `-I eth1`. leave empty for default |
 | `showIP` | true | `optional` shows the IP address of devices found on the network |
 | `showUnknown` | true | `optional` shows devices found on the network even if not specified in the `devices` option |
 | `showOffline` | true | `optional` shows devices specified in the `devices` option even when offline |
@@ -103,7 +104,6 @@ Add the module to the modules array in the `config/config.js` file:
 | `showLastSeenWhenOffline:` | `false` | `optional` show last seen only when offline. |
 | `showDeviceColumns:` | `false` | `optional` show devices as columns. |
 | `coloredState:` | `false` | `optional` determines whether devices are shown in a color defined in the devices section and controlled by the online / offline state. |
-
 
 
 ### Device Object
@@ -141,6 +141,14 @@ then copy the array into the config file:
 cd ~/MagicMirror/modules/MMM-MacAddressScan/scripts
 chmod +x arps2mm.sh
 ./arps2mm.sh
+```
+
+If a network interface needs to be specified for `arp-scan` to detect devices
+on the local network then run `arps2mm.sh` with the `-I <interface>` option.
+For example:
+
+```console
+./arps2mm.sh -I wlan0
 ```
 
 **Note:** Updating the vendor database is recommended before generating the
@@ -425,6 +433,6 @@ of the repository at https://gitlab.com/doctorfree/MMM-MacAddressScan/-/issues
 
 Copyright (c) 2016 Ian Perrin
 
-Copyright (c) 2021-2022 Ronald Joe Record
+Copyright (c) 2021-2023 Ronald Joe Record
 
 MIT License

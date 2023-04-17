@@ -41,7 +41,8 @@ module.exports = NodeHelper.create({
         var self = this;
         // Target hosts/network supplied in config or entire localnet
         var arpHosts = this.config.network || '-l';
-        var arp = sudo(['arp-scan', '-q', arpHosts]);
+        var arpInterface = this.config.interface || '';
+        var arp = sudo(['arp-scan', '-q', arpHosts, arpInterface]);
         var buffer = '';
         var errstream = '';
         var discoveredMacAddresses = [];
