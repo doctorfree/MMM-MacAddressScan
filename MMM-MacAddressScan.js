@@ -15,7 +15,7 @@ Module.register("MMM-MacAddressScan", {
         network: "-l", // a Local Network IP mask to limit the mac address scan, i.e. `192.168.0.0/24`. Use `-l` for the entire localnet
         interface: "", // the network interface on which to broadcast, useful if arp-scan is not finding devices, for example "wlan0" or "eth1". leave empty for default
         showIP: true, // show IP of devices
-        showUnknown: true, // shows devices found on the network even if not specified in the 'devices' option 
+        showUnknown: true, // shows devices found on the network even if not specified in the 'devices' option
         showOffline: true, // shows devices specified in the 'devices' option even when offline
         showLastSeen: false, // shows when the device was last seen e.g. "Device Name - last seen 5 minutes ago"
         keepAlive: 180, // how long (in seconds) a device should be considered 'alive' since it was last found on the network
@@ -31,7 +31,7 @@ Module.register("MMM-MacAddressScan", {
         showLastSeenWhenOffline: false, // show last seen only when offline //
 
         debug: false,
-        
+
         // Show table as device rows or as device columns
         showDeviceColumns: false,
         coloredState: false,
@@ -301,17 +301,17 @@ Module.register("MMM-MacAddressScan", {
         // Display device status
         var deviceTable = document.createElement("table");
         deviceTable.classList.add("deviceTable", "small");
-        
+
         // Show devices in columns
         // Generate header row and device state row
-        
+
         var headerRow = document.createElement("tr");
         headerRow.classList.add("headerRow", "dimmed");
         var devStateRow = document.createElement("tr");
         devStateRow.classList.add("devStateRow", "dimmed");
-        
+
         this.networkDevices.forEach(function(device) {
-            
+
             if (device && (device.online || device.showOffline)) {
 
                 // Device row
@@ -329,7 +329,7 @@ Module.register("MMM-MacAddressScan", {
                 if (self.config.colored) {
                     icon.style.cssText = "color: " + device.color;
                 }
-                
+
                 // If using colored state, set icon color appropriately
                 if (self.config.coloredState) {
                     if (device.online) {
@@ -356,8 +356,8 @@ Module.register("MMM-MacAddressScan", {
                 deviceRow.appendChild(deviceCell);
 
                 // When last seen
-                if ((self.config.showLastSeen && device.lastSeen  && !self.config.showLastSeenWhenOffline) || 
-                    (self.config.showLastSeen && !device.lastSeen &&  self.config.showLastSeenWhenOffline)) {
+                if ((self.config.showLastSeen && device.online) ||
+                    (self.config.showLastSeen && !device.online && self.config.showLastSeenWhenOffline)) {
                     var dateCell = document.createElement("td");
                     dateCell.classList.add("dateCell", "dimmed", "light");
                     if (typeof device.lastSeen !== 'undefined') {
@@ -390,11 +390,11 @@ Module.register("MMM-MacAddressScan", {
                 }
 
                 headerRow.appendChild(headerDevCell);
-                
+
                 // Device state row
                 var devStateCell = document.createElement("td");
                 devStateCell.classList.add("devStateCell");
-                
+
                 // Color online / offline
                 if (self.config.coloredState) {
                     if (device.online) {
@@ -403,12 +403,12 @@ Module.register("MMM-MacAddressScan", {
                         icon.style.cssText = "color: " + device.colorStateOffline;
                     };
                 }
-                
+
                 devStateCell.appendChild(icon);
 
                 devStateRow.appendChild(devStateCell);
 
-                // Show as Device rows or as Device columns 
+                // Show as Device rows or as Device columns
                 if (!self.config.showDeviceColumns) {
                     deviceTable.appendChild(deviceRow);
                 }
@@ -417,8 +417,8 @@ Module.register("MMM-MacAddressScan", {
                 if (this.config.debug) Log.info(self.name + " Online, but ignoring: '" + device + "'");
             }
         });
-        
-        // Show as Device rows or as Device columns 
+
+        // Show as Device rows or as Device columns
         if (self.config.showDeviceColumns) {
             deviceTable.appendChild(headerRow);
             deviceTable.appendChild(devStateRow);
