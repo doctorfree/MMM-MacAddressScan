@@ -356,14 +356,22 @@ Module.register("MMM-MacAddressScan", {
                 deviceRow.appendChild(deviceCell);
 
                 // When last seen
-                if ((self.config.showLastSeen && device.online) ||
-                    (self.config.showLastSeen && !device.online && self.config.showLastSeenWhenOffline)) {
-                    var dateCell = document.createElement("td");
-                    dateCell.classList.add("dateCell", "dimmed", "light");
-                    if (typeof device.lastSeen !== 'undefined') {
+                if (self.config.showLastSeen) {
+                  var dateCell = document.createElement("td");
+                  dateCell.classList.add("dateCell", "dimmed", "light");
+                  if (self.config.showLastSeenWhenOffline) {
+                    if (!device.online) {
+                      if (typeof device.lastSeen !== 'undefined') {
                         dateCell.innerHTML = device.lastSeen.fromNow();
+                      }
+                      deviceRow.appendChild(dateCell);
+                    }
+                  } else {
+                    if (typeof device.lastSeen !== 'undefined') {
+                      dateCell.innerHTML = device.lastSeen.fromNow();
                     }
                     deviceRow.appendChild(dateCell);
+                  }
                 }
 
                 // Append a new row if showDeviceColumns and showInNewRow are both true
